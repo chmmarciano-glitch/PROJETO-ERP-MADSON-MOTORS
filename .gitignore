@@ -1,41 +1,32 @@
-# Variáveis de ambiente - NUNCA versionar
+# Variáveis de ambiente — NUNCA versionar
 .env
 .env.local
 .env.*.local
-backend/.env
-frontend/.env
 
 # Node modules
 node_modules/
-package-lock.json
-yarn.lock
 npm-debug.log*
 yarn-error.log*
 
-# IDE
-.vscode/
-.idea/
-*.swp
-*.swo
-*~
+# Build
+dist/
+build/
+.vite/
+.next/
 
-# OS
-.DS_Store
-Thumbs.db
+# IDE
+.vscode/settings.json
+.idea/
 
 # Logs
 logs/
 *.log
 
-# Build & Dist
-dist/
-build/
-.next/
-out/
+# OS
+.DS_Store
+Thumbs.db
 
-# Supabase
-supabase/migrations/
-
-# Temp
-temp/
-tmp/
+# Credenciais
+*.pem
+*.key
+.env.vault
