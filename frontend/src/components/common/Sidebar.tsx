@@ -1,4 +1,4 @@
-import { LayoutDashboard, Users, Building2, LogOut } from 'lucide-react';
+import { LayoutDashboard, Users, Building2, LogOut, Bot } from 'lucide-react';
 
 interface SidebarItem {
   label: string;
@@ -18,6 +18,11 @@ export const Sidebar = ({ isOpen, onNavigate, onLogout }: SidebarProps) => {
       label: 'Dashboard',
       icon: <LayoutDashboard size={20} />,
       path: '/dashboard',
+    },
+    {
+      label: 'Inteligência Artificial',
+      icon: <Bot size={20} />,
+      path: '/ai',
     },
     {
       label: 'Conselho',

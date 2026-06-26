@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
-import { AuthState, User, LoginRequest, LoginResponse } from '../../types';
+import { AuthState, User, LoginRequest } from '../../types';
 import { authService } from '../../services/api';
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -9,7 +9,7 @@ import { authService } from '../../services/api';
 const initialState: AuthState = {
   user: null,
   token: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
   isAuthenticated: false,
 };
@@ -48,9 +48,16 @@ export const checkAuth = createAsyncThunk(
       const token = authService.getToken();
       const user = authService.getCurrentUser();
 
-      if (token && user) {
+      // Rejeita token inválido (string "undefined" de sessões com bug anterior)
+      if (token && token !== 'undefined' && user) {
         console.log('[Auth] Sessão válida encontrada');
         return { token, user };
+      }
+
+      // Limpa localStorage corrompido
+      if (token === 'undefined') {
+        localStorage.removeItem('madson_motors_jwt_token');
+        localStorage.removeItem('user');
       }
 
       console.log('[Auth] Nenhuma sessão válida');

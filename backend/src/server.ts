@@ -9,6 +9,7 @@ import { testSupabaseConnection } from './utils/supabase';
 import authRoutes from './routes/auth.routes';
 import conselhRoutes from './routes/conselho.routes';
 import departamentosRoutes from './routes/departamentos.routes';
+import aiRoutes from './routes/ai';
 
 const app: Application = express();
 
@@ -57,6 +58,7 @@ app.get('/health', (req: Request, res: Response) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/conselho', conselhRoutes);
 app.use('/api/departamentos', departamentosRoutes);
+app.use('/api/ai', aiRoutes);
 
 // ==========================================
 // 404 HANDLER
@@ -105,6 +107,11 @@ export async function startServer() {
         ║                                                              ║
         ║     GET  http://localhost:${env.PORT}/health               ║
         ║     POST http://localhost:${env.PORT}/api/auth/login       ║
+        ║     POST http://localhost:${env.PORT}/api/ai/chat          ║
+        ║     POST http://localhost:${env.PORT}/api/ai/analyze       ║
+        ║     POST http://localhost:${env.PORT}/api/ai/report        ║
+        ║     GET  http://localhost:${env.PORT}/api/ai/history/:id   ║
+        ║     DEL  http://localhost:${env.PORT}/api/ai/history/:id   ║
         ║                                                              ║
         ╚══════════════════════════════════════════════════════════════╝
       `);

@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import authReducer from './slices/auth';
 import conselhoReducer from './slices/conselho';
 import departamentoReducer from './slices/departamento';
+import aiReducer from './slices/ai';
 
 // ═══════════════════════════════════════════════════════════════════════════
 // CONFIGURAR STORE REDUX
@@ -12,6 +13,7 @@ export const store = configureStore({
     auth: authReducer,
     conselho: conselhoReducer,
     departamento: departamentoReducer,
+    ai: aiReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
@@ -20,7 +22,7 @@ export const store = configureStore({
         ignoredPaths: ['auth.user', 'conselho.selectedConselheiro'],
       },
     }),
-  devTools: process.env.NODE_ENV !== 'production',
+  devTools: import.meta.env.DEV,
 });
 
 // ═══════════════════════════════════════════════════════════════════════════

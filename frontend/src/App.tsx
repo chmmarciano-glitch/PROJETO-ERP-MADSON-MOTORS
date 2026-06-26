@@ -12,6 +12,7 @@ import { AuthLayout } from './components/layouts/AuthLayout';
 import { LoginPage } from './pages/LoginPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { NotFoundPage } from './pages/NotFoundPage';
+import AIPage from './pages/AIPage';
 
 // Components
 import { ProtectedRoute } from './components/common/ProtectedRoute';
@@ -83,6 +84,7 @@ const AppRoutes = () => {
         }
       >
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/ai" element={<AIPage />} />
         <Route path="/conselho" element={<ConselheirList />} />
         <Route path="/departamentos" element={<DepartamentoList />} />
       </Route>

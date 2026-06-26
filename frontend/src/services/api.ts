@@ -111,10 +111,13 @@ export const authService = {
     const response = await api.post<any, ApiResponse<LoginResponse>>('/auth/login', credentials);
 
     if (response.data) {
-      const { token, user } = response.data;
+      // Backend retorna access_token — normaliza para token
+      const token = (response.data as any).access_token || (response.data as any).token;
+      const user = response.data.user;
+      if (!token) throw new Error('Token não recebido do servidor');
       localStorage.setItem(JWT_TOKEN_KEY, token);
       localStorage.setItem('user', JSON.stringify(user));
-      return response.data;
+      return { token, user };
     }
 
     throw new Error('Resposta inválida do servidor');
